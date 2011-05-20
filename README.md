@@ -42,3 +42,5 @@ RbNotifu::show({
 ## TODO
 
  - Use FFI instead of embedded executable file
+ - While showing message it blocks. Need to add threads
+ - Add specs
