@@ -16,10 +16,7 @@ There are three possible alternatives to Growl on windows:
 ```ruby
 require 'rb-notifu'
 
-RbNotifu::show({
-  :message => "test",
-  :type => :warn
-})
+p RbNotifu::show :message => "test", :type => :warn
 ```
 
 ## Available options
@@ -37,10 +34,8 @@ RbNotifu::show({
 :nosound  Do not play a sound when the tooltip is displayed
 :noquiet  Show the tooltip even if the user is in the quiet period that follows his very first login (Windows 7 and up)
 :xp       Use IUserNotification interface event when IUserNotification2 is available
-```
 
 ## TODO
 
  - Use FFI instead of embedded executable file
- - While showing message it blocks. Need to add threads
- - Add specs
+ - While showing message it blocks. Need to add thread and :noblock option

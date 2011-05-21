@@ -26,4 +26,7 @@ Gem::Specification.new do |s|
   ]
   #s.executables   = ["notifu.exe", "notifu64.exe"]
   s.require_paths = ["lib"]
+  s.add_development_dependency 'bundler'
+  s.add_development_dependency 'rspec'
+  
 end
