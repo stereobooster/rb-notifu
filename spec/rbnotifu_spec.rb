@@ -6,18 +6,22 @@ describe RbNotifu do
   @result
   
   it "should work" do
-    @result = RbNotifu.show :display => 1000
-    @result.should_not == 1
-    @result.should_not == 5
-    @result.should_not == 256
+    RbNotifu.show :display => 1000 do |status|
+      @result = status
+    end
+    sleep 1.5
+    RbNotifu::ERRORS.include?(@result).should be_false
   end
 
-  it "can be intrupted by another instance" do
+  it "can be interupted by another instance" do
     @result = -1
-    Thread.new { @result = RbNotifu.show :display => 2000 }
+    RbNotifu.show :display => 2000 do |status|
+      @result = status
+    end
     sleep 0.5
     RbNotifu.show :display => 1000
-    @result.should == 8
+    sleep 0.5
+    @result.should == RbNotifu::SUCCESS_NEW_INSTANCE
   end
   
 end
