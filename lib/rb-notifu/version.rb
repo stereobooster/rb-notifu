@@ -1,3 +1,3 @@
-module RbNotifu
-  VERSION = "0.0.3"
+module Notifu
+  VERSION = "0.0.4"
 end

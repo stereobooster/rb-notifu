@@ -4,7 +4,7 @@ require "rb-notifu/version"
 
 Gem::Specification.new do |s|
   s.name        = "rb-notifu"
-  s.version     = RbNotifu::VERSION
+  s.version     = Notifu::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["stereobooster"]
   s.email       = ["stereobooster@gmail.com"]

@@ -1,5 +1,7 @@
 # rb-notifu
 
+> Notification Kung Fu for Windows.
+
 Notification system for windows. Trying to be Growl. 
 Ruby wrapper around notifu (http://www.paralint.com/projects/notifu/index.html)
 
@@ -16,8 +18,8 @@ There are three possible alternatives to Growl on windows:
 ```ruby
 require 'rb-notifu'
 
-RbNotifu::show :message => "test", :type => :warn do |status|
-  p RbNotifu::ERRORS.include? status
+Notifu::show :message => "test", :type => :warn do |status|
+  p Notifu::ERRORS.include? status
 end
 
 sleep 1.5
@@ -30,7 +32,7 @@ sleep 1.5
             info   The message is an informational message
             warn   The message is an warning message
             error  The message is an error message
-:display  The number of milliseconds to display (omit or 0 for infinit)
+:time  The number of milliseconds to display (omit or 0 for infinit)
 :title    The title (or prompt) of the ballon
 :message  The message text
 :icon     Specify an icon to use ("parent" uses the icon of the parent process)

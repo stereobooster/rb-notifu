@@ -1,27 +1,27 @@
 require 'rb-notifu'
 require 'rspec'
 
-describe RbNotifu do
+describe Notifu do
 
   @result
   
   it "should work" do
-    RbNotifu.show :display => 1000 do |status|
+    Notifu.show :time => 1 do |status|
       @result = status
     end
     sleep 1.5
-    RbNotifu::ERRORS.include?(@result).should be_false
+    Notifu::ERRORS.include?(@result).should be_false
   end
 
   it "can be interupted by another instance" do
     @result = -1
-    RbNotifu.show :display => 2000 do |status|
+    Notifu.show :time => 2 do |status|
       @result = status
     end
     sleep 0.5
-    RbNotifu.show :display => 1000
+    Notifu.show :time => 1
     sleep 0.5
-    @result.should == RbNotifu::SUCCESS_NEW_INSTANCE
+    @result.should == Notifu::SUCCESS_NEW_INSTANCE
   end
   
 end

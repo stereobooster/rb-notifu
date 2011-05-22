@@ -1,11 +1,11 @@
 require 'pathname'
-module RbNotifu
+module Notifu
 
   @executable = Pathname.new(__FILE__).parent.parent.realpath.to_s + '/bin/notifu.exe'
   
   @option_to_flag = {
     :type => "t",
-    :display => "d",
+    :time => "d",
     :title => "p",
     :message => "m",
     :icon => "i",
@@ -17,7 +17,7 @@ module RbNotifu
   
   @option_default = {
     :type => :info,
-    :display => 1000,
+    :time => 3,
     :title => "rb-notifu",
     :message => " ",
     :icon => false,
@@ -64,7 +64,7 @@ module RbNotifu
   #              info   The message is an informational message
   #              warn   The message is an warning message
   #              error  The message is an error message
-  #  :display  The number of milliseconds to display (omit or 0 for infinit)
+  #  :time     The number of seconds to display (omit or 0 for infinit)
   #  :title    The title (or prompt) of the ballon
   #  :message  The message text
   #  :icon     Specify an icon to use ("parent" uses the icon of the parent process)
@@ -76,8 +76,14 @@ module RbNotifu
     flags = ""
     @option_default.each do |key, value|
       flag = options.key?(key) ? options[key] : value
+      if key == :time
+        flag = (flag * 1000).to_i
+      end
       if flag
-        flags += "/" + @option_to_flag[key] + " " + self.escape(flag) + " "
+        flags += "/" + @option_to_flag[key] + " "
+        if flag != true
+          flags += self.escape(flag) + " "
+        end
       end
     end
     Thread.new{
