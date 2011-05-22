@@ -61,10 +61,10 @@ module Notifu
   
   #Params:
   #  :type     The type of message to display values are:
-  #              info   The message is an informational message
-  #              warn   The message is an warning message
-  #              error  The message is an error message
-  #  :time     The number of seconds to display (omit or 0 for infinit)
+  #             :info   The message is an informational message
+  #             :warn   The message is an warning message
+  #             :error  The message is an error message
+  #  :time     The number of seconds to display (0 for infinit)
   #  :title    The title (or prompt) of the ballon
   #  :message  The message text
   #  :icon     Specify an icon to use ("parent" uses the icon of the parent process)
