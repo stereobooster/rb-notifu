@@ -2,7 +2,7 @@ require 'pathname'
 module Notifu
 
   @executable = Pathname.new(__FILE__).parent.parent.realpath.to_s + '/bin/notifu.exe'
-  
+
   @option_to_flag = {
     :type => "t",
     :time => "d",
@@ -14,7 +14,7 @@ module Notifu
     :noquiet => "w",
     :xp => "xp"
   }
-  
+
   @option_default = {
     :type => :info,
     :time => 3,
@@ -29,36 +29,36 @@ module Notifu
 
   # There was an error in one the argument or some required argument was missing.
   ERROR_ARGUMENT = 1
-  
+
   # IUserNotification class object or interface is not supported on this version of Windows.
   ERROR_NOT_SUPPORTED = 5
-  
+
   # There was some unexpected error.
   ERROR_UNEXPECTED = 256
-  
+
   ERRORS = [ERROR_ARGUMENT, ERROR_NOT_SUPPORTED, ERROR_UNEXPECTED]
-  
+
   # Registry was succesfully edited. Only returned when /e is used with no other argument.
   SUCCESS_REGISTRY = 0
-  
+
   # The balloon timed out waiting. The user didn't click the close button or the balloon itself.
   SUCCESS_TIMEOUT = 2
-  
+
   # The user clicked the balloon.
   SUCCESS_CLICK = 3
-  
+
   # The user closed the balloon using the X in the top right corner.
   SUCCESS_CLOSE = 4
-  
+
   # The user clicked with the right mouse button on the icon, in the system notification area (Vista and later)
   SUCCESS_RIGHT = 6
-  
+
   # The user clicked with the left mouse button on the icon, in the system notification area (Vista and later)
   SUCCESS_LEFT = 7
-  
+
   # A new instance of Notifu dismissed a running instace
   SUCCESS_NEW_INSTANCE = 8
-  
+
   #Params:
   #  :type     The type of message to display values are:
   #             :info   The message is an informational message
@@ -88,7 +88,7 @@ module Notifu
     end
     Thread.new{
       system "#{@executable} #{flags}"
-      block.call($?.exitstatus)
+      block.call($?.exitstatus) if block
     }
   end
 
